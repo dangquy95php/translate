@@ -1,0 +1,58 @@
+{
+  "name": "translate",
+  "version": "1.0.0",
+  "description": "",
+  "main": "puppeteer.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "btoa": "^1.2.1",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.5",
+    "cryptr": "^6.0.2",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.1.9",
+    "express-router-group": "^0.1.4",
+    "express-session": "^1.17.1",
+    "express-validator": "^6.6.1",
+    "extract-css": "^1.5.5",
+    "extract-css-core": "^2.3.0",
+    "get-css": "^3.4.1",
+    "html-parse-stringify": "^2.0.0",
+    "html-validator": "^5.1.14",
+    "local-storage": "^2.0.0",
+    "localStorage": "^1.0.4",
+    "match-all": "^1.2.6",
+    "moment": "^2.27.0",
+    "mongoose": "^5.9.28",
+    "node-html-parser": "^1.2.20",
+    "node-persist": "^3.1.0",
+    "nodemailer": "^6.4.11",
+    "path": "^0.12.7",
+    "puppeteer": "^1.20.0",
+    "validate-localhost": "0.0.4",
+    "website-scraper": "^4.2.2",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  },
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dangquy95php/translate.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dangquy95php/translate/issues"
+  },
+  "homepage": "https://github.com/dangquy95php/translate#readme"
+}

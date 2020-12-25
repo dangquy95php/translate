@@ -5,11 +5,12 @@ module.exports = {
 	},
 
     translate: async function(req, res) {
+		console.log('controller');
 		let input_text = req.query.input_translate;
         await page.waitFor('input[name=q]');
 		await page.$eval('input[name=q]', (el, input_text) => el.value = input_text, input_text);
         await page.click('button[type="submit"]');
-        
+        console.log('await page.click(button[type="submit"]);');
         let data_translate = new Promise((resovle, reject) => {
 			page.on("response", async (response) => {
 				if(response.url().search('https://iapi.glosbe.com/iapi3/translate') != -1) {

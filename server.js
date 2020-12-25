@@ -22,18 +22,12 @@ global.express     = express;
 global.path        = path;
 
 (async () => {
-    const browser = await puppeteer.launch({headless: true, defaultViewport: null,  args: [
-            '--no-sandbox',
-            '--disable-gpu',
-            '--disable-dev-shm-usage',
-            '--hide-scrollbars',
-            '--mute-audio',
-            '--disable-web-security',
-            '--disable-features=IsolateOrigins,site-per-process'
-            // '--no-sandbox',
-            // '--disable-setuid-sandbox',
-        ]
-    });
+    const browser = await puppeteer.launch({
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+        ],
+      });
 
     global.page = await browser.newPage();
     await page.setRequestInterception(true);

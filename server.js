@@ -82,14 +82,14 @@ app.set('port', process.env.PORT || 80);
 
 // include router
 const router = require('./routes/router');
-// app.use((req, res, next) => {
+app.use((req, res, next) => {
 //     res.locals.user = req.session.user;
 //     res.locals.success = req.flash('success');
 //     res.locals.errors = req.flash('errors');
 //     res.locals.validate = req.flash('validate');
     
-//     return next();
-// });
+    return next();
+});
 
 app.use('/', router);
 app.get('*', function(req, res){

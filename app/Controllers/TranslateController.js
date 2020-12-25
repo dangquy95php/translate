@@ -1,25 +1,41 @@
 module.exports = {
-    index: async function(req, res) {
-        console.log(await puppeteer);
-        await puppeteer.page.waitFor('input[name=q]');
-		await puppeteer.page.$eval('input[name=q]', el => el.value = 'schule');
-        await puppeteer.page.click('button[type="submit"]');
+
+	index: async function(req, res) {
+        return res.render('index');
+	},
+
+    translate: async function(req, res) {
+		let input_text = req.query.input_translate;
+		console.log(input_text);
+        await page.waitFor('input[name=q]');
+		await page.$eval('input[name=q]', (el, input_text) => el.value = input_text, input_text);
+        await page.click('button[type="submit"]');
         
-        let data_translate = new Promise(resovle => {
+        let data_translate = new Promise((resovle, reject) => {
 			page.on("response", async (response) => {
 				if(response.url().search('https://iapi.glosbe.com/iapi3/translate') != -1) {
 					if (300 > response.status() && 200 <= response.status()) {
-						console.log(response.url().search('https://iapi.glosbe.com/iapi3/translate') != -1);
 						data_translate = JSON.stringify(await response.json())
-						resovle(JSON.stringify(await response.json()));
+						resovle({
+							status: response.status(),
+							data: JSON.stringify(await response.json())
+						});
+					} else {
+						reject({
+							status: response.status(),
+							data: JSON.stringify(await response.json())
+						});
 					}
 				};
 			});
-        })
-        
-        console.log(await data_translate);
+		})
 
-        // return res.render('index');
+        let result = await data_translate;
+
+		if (result.status == 200) {
+			return res.status(200).json(result);
+		} else {
+			return res.status(500).json(result);
+		}
     },
-
 }

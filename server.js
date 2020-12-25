@@ -6,7 +6,8 @@ const bodyParser  = require('body-parser');
 const dotenv      = require('dotenv')
 const fileUpload  = require('express-fileupload');
 
-const Puppeteer   = require('./library/Puppeteer.js');
+// const Puppeteer   = require('./library/Puppeteer.js');
+const puppeteer  = require('puppeteer');
 
 // const helper      = require('./config/helper');
 
@@ -19,8 +20,39 @@ const Puppeteer   = require('./library/Puppeteer.js');
 dotenv.config();
 global.express     = express;
 global.path        = path;
-global.puppeteer   =  new Puppeteer().startBrowser();
 
+(async () => {
+    const browser = await puppeteer.launch({headless: false, defaultViewport: null,  args: [
+            '--no-sandbox',
+            '--disable-gpu',
+            '--disable-dev-shm-usage',
+            '--hide-scrollbars',
+            '--mute-audio',
+            '--disable-web-security',
+            '--disable-features=IsolateOrigins,site-per-process'
+        ]
+    });
+
+    global.page = await browser.newPage();
+    await page.setRequestInterception(true);
+    page.on('request', async (request) => {
+        if (['image', 'stylesheet', 'font'].indexOf(request.resourceType()) !== -1) {
+            request.abort();
+        } else {
+            request.continue();
+        }
+    });
+
+    await page.goto('https://vi.glosbe.com/de/vi', { waitUntil: 'networkidle2' })
+
+    // await page.waitFor('input[name=q]');
+    // await page.$eval('input[name=q]', el => el.value = 'schule');
+    // await page.click('button[type="submit"]');
+    
+    // console.log(await data_translate);
+
+    // await browser.close();
+})();
 
 // global.helper      = helper;
 // global.mongoose    = mongoose;
@@ -46,9 +78,9 @@ app.use(function (req, res, next) {
     next()
 })
 
-// app.use('/', express.static(__dirname + '/public/'));
-// app.set('views', path.join(__dirname, '/views'));
-// app.set('view engine', 'ejs');
+app.use('/', express.static(__dirname + '/public/'));
+app.set('views', path.join(__dirname, '/views'));
+app.set('view engine', 'ejs');
 app.set('port', process.env.PORT || 3000);
 // app.use(flash());
 

@@ -30,7 +30,8 @@ global.path        = path;
             // '--mute-audio',
             // '--disable-web-security',
             // '--disable-features=IsolateOrigins,site-per-process'
-            '--disable-gpu', '--enable-logging', '--no-sandbox', '--disable-setuid-sandbox'
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
         ]
     });
 

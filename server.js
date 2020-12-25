@@ -22,7 +22,7 @@ global.express     = express;
 global.path        = path;
 
 (async () => {
-    const browser = await puppeteer.launch({headless: false, defaultViewport: null,  args: [
+    const browser = await puppeteer.launch({headless: true, defaultViewport: null,  args: [
             // '--no-sandbox',
             // '--disable-gpu',
             // '--disable-dev-shm-usage',
@@ -100,6 +100,7 @@ app.use('/', router);
 app.get('*', function(req, res){
     return res.render('404');
 });
+console.log('da start server');
 // mongoose.connect(process.env.MONGODB_URI, {
 //     useFindAndModify: false,
 //     useCreateIndex: true,

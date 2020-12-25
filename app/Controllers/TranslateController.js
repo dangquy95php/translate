@@ -6,7 +6,6 @@ module.exports = {
 
     translate: async function(req, res) {
 		let input_text = req.query.input_translate;
-		console.log(input_text);
         await page.waitFor('input[name=q]');
 		await page.$eval('input[name=q]', (el, input_text) => el.value = input_text, input_text);
         await page.click('button[type="submit"]');

@@ -24,7 +24,7 @@ module.exports = class Puppteer {
 			}
 		});
 
-		await page.goto('https://vi.glosbe.com/de/vi', { waitUntil: 'networkidle2' })
+		await page.goto('https://translate.glosbe.com/de-vi', { waitUntil: 'networkidle2' })
 
 		// await page.waitFor('input[name=q]');
 		// await page.$eval('input[name=q]', el => el.value = 'schule');

@@ -22,8 +22,7 @@ global.express     = express;
 global.path        = path;
 
 (async () => {
-    const browser = await puppeteer.launch({
-        args: [
+    const browser = await puppeteer.launch({headless: false, defaultViewport: null,  args: [
           '--no-sandbox',
           '--disable-setuid-sandbox',
         ],
@@ -39,7 +38,7 @@ global.path        = path;
         }
     });
 
-    await page.goto('https://vi.glosbe.com/de/vi', { waitUntil: 'networkidle2' })
+    await page.goto('https://translate.glosbe.com/en-vi', { waitUntil: 'networkidle2' })
 
     // await page.waitFor('input[name=q]');
     // await page.$eval('input[name=q]', el => el.value = 'schule');

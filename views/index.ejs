@@ -52,8 +52,8 @@
                     self.setContent(`Input: ${JSON.parse(data.data).input}`);
                     self.setContentAppend(`<br>Translate: ${JSON.parse(data.data).translation}`);
                 }).fail(function (error) {
-                    self.setContent('Something went wrong.'+ JSON.stringify(error));
                     console.log('error'+ error);
+                    self.setContent('Something went wrong.'+ JSON.stringify(error));
                 })
             }
         });

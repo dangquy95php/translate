@@ -18,7 +18,6 @@ module.exports = {
 		
         let data_translate = new Promise((resovle, reject) => {
 			page.on("response", async (response) => {
-				console.log('response.url()'+ response.url());
 				if(response.url().search('https://translator-api.glosbe.com/translateByLangDetect') != -1) {
 					if (300 > response.status() && 200 <= response.status()) {
 						data_translate = JSON.stringify(await response.json())

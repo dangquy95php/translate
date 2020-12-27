@@ -6,11 +6,16 @@ module.exports = {
 
     translate: async function(req, res) {
 		let input_text = req.body.input_translate;
-
+		let input_lang = req.body.input_lang;
+		let output_lang = req.body.output_lang;
+	
         await page.waitFor('textarea');
 		await page.$eval('textarea', (el, input_text) => el.value = input_text, input_text);
 		await page.type('textarea', String.fromCharCode(13));
+		await page.select('#source-language-selector', input_lang);
+		await page.select('#target-language-selector', output_lang);
 
+		
         let data_translate = new Promise((resovle, reject) => {
 			page.on("response", async (response) => {
 				console.log('response.url()'+ response.url());

@@ -12,16 +12,68 @@
 <body>
   	<div class="container mt-5">
 		<div class="row">
-            <div class="col-md-10">
+            <div class="col-md-5">
                 <div class="form-group">
-                    <p class="m-0 d-flex justify-content-between align-items-center">
-                        <label for="exampleFormControlTextarea1">Input translate</label>
-                        <label for="exampleFormControlTextarea1" class="text-right">English -> Vietnamese</label>
-                    </p>
-                    
-                    <textarea id="input" name="input_translate" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <select id="source-language-selector1" aria-label="Source language" class="form-control">
+                        <option value="ar"> Arabic <span></span></option>
+                        <option value="bg"> Bulgarian <span></span></option>
+                        <option value="hr"> Croatian <span></span></option>
+                        <option value="cs"> Czech <span></span></option>
+                        <option value="en"> English <span></span></option>
+                        <option value="fr"> French <span></span></option>
+                        <option value="de"> German <span></span></option>
+                        <option value="el"> Greek <span></span></option>
+                        <option value="hu"> Hungarian <span></span></option>
+                        <option value="it"> Italian <span></span></option>
+                        <option value="ja"> Japanese <span></span></option>
+                        <option value="nb"> Norwegian <span></span></option>
+                        <option value="fa"> Persian <span></span></option>
+                        <option value="pl"> Polish <span></span></option>
+                        <option value="pt"> Portuguese <span></span></option>
+                        <option value="ru"> Russian <span></span></option>
+                        <option value="sl"> Slovenian <span></span></option>
+                        <option value="es"> Spanish <span></span></option>
+                        <option value="sv"> Swedish <span></span></option>
+                        <option value="tr"> Turkish <span></span></option>
+                        <option value="vi" selected="true"> Vietnamese <span></span></option>
+                    </select>
                 </div>
-                <button id="click" type="button" class="btn btn-primary">Translate</button>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group text-center">-></div>
+            </div>
+            <div class="col-md-5">
+                <div class="form-group">
+                    <select id="source-language-selector2" aria-label="Source language" class="form-control">
+                        <option value="ar"> Arabic <span></span></option>
+                        <option value="bg"> Bulgarian <span></span></option>
+                        <option value="hr"> Croatian <span></span></option>
+                        <option value="cs"> Czech <span></span></option>
+                        <option value="en"> English <span></span></option>
+                        <option value="fr"> French <span></span></option>
+                        <option value="de"> German <span></span></option>
+                        <option value="el"> Greek <span></span></option>
+                        <option value="hu"> Hungarian <span></span></option>
+                        <option value="it"> Italian <span></span></option>
+                        <option value="ja"> Japanese <span></span></option>
+                        <option value="nb"> Norwegian <span></span></option>
+                        <option value="fa"> Persian <span></span></option>
+                        <option value="pl"> Polish <span></span></option>
+                        <option value="pt"> Portuguese <span></span></option>
+                        <option value="ru"> Russian <span></span></option>
+                        <option value="sl"> Slovenian <span></span></option>
+                        <option value="es"> Spanish <span></span></option>
+                        <option value="sv"> Swedish <span></span></option>
+                        <option value="tr"> Turkish <span></span></option>
+                        <option value="vi" selected="true"> Vietnamese <span></span></option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea id="input" name="input_translate" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <button id="click" type="button" class="btn btn-primary mt-3">Translate</button>
             </div>
         </div>
 	</div>
@@ -43,7 +95,9 @@
                     type : "post",
                     dataType:"text",
                     data : {
-                        input_translate : $('#input').val()
+                        input_translate : $('#input').val(),
+                        input_lang: $('#source-language-selector1').val(),
+                        output_lang: $('#source-language-selector2').val(),
                     }
                 }).done(function (result) {
                     var data = JSON.parse(result);
